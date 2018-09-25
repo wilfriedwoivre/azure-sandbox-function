@@ -25,7 +25,7 @@ public static async Task Run(TimerInfo myTimer)
         {
             var expirationDate =  resourceGroup.Tags["ExpirationDate"];
 
-            var date = DateTime.Parse(expirationDate, CultureInfo.GetCultureInfo("fr-FR")); 
+            var date = DateTime.Parse(expirationDate, CultureInfo.GetCultureInfo("en-US")); 
 
             if (date < DateTime.UtcNow)
             {
