@@ -29,7 +29,7 @@ public static async Task Run(TimerInfo myTimer)
 
             if (date < DateTime.UtcNow)
             {
-                await azure.ResourceGroups.DeleteByNameAsync(resourceGroup.Name);
+                azure.ResourceGroups.DeleteByNameAsync(resourceGroup.Name);
             }
         }
     }
