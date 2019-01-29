@@ -16,7 +16,7 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
 {
     log.LogInformation("C# HTTP trigger function processed a request.");
     AzureCredentials credentials = SdkContext.AzureCredentialsFactory.FromMSI(new MSILoginInformation(MSIResourceType.AppService), AzureEnvironment.AzureGlobalCloud);
-    
+
     var azure = Azure
             .Configure()
             .WithLogLevel(HttpLoggingDelegatingHandler.Level.Basic)
@@ -34,14 +34,20 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
     if (string.IsNullOrWhiteSpace(data.Location)) data.Location = "West Europe";
     if (data.ExpirationDate == default(DateTime)) data.ExpirationDate = DateTime.UtcNow;
 
-
-    await azure.ResourceGroups.Define(data.Name).WithRegion(Region.Create(data.Location)).WithTags(new Dictionary<string, string>()
+    try
+    {
+        await azure.ResourceGroups.Define(data.Name).WithRegion(Region.Create(data.Location)).WithTags(new Dictionary<string, string>()
     {
         { "AutoDelete", "true" },
         { "ExpirationDate", data.ExpirationDate.ToString("yyyy-MM-dd") }
     }).CreateAsync();
 
-    return new OkObjectResult("Success");
+        return new OkObjectResult("Success");
+    }
+    catch (Exception ex)
+    {
+        return new ExceptionResult(ex, true);
+    }
 }
 
 
