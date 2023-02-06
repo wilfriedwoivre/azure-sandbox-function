@@ -1,6 +1,7 @@
 name: Generate ARM template
 
 on:
+  workflow_dispatch:
   push: 
     branches:
       - v2
