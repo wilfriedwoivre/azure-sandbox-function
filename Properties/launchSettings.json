@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "azure_sandbox_function": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7039",
+      "launchBrowser": false
+    }
+  }
+}
