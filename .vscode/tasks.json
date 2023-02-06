@@ -6,7 +6,10 @@
 			"label": "func: host start",
 			"command": "host start",
 			"problemMatcher": "$func-watch",
-			"isBackground": true
+			"isBackground": true,
+			"options": {
+				"cwd": "${workspaceFolder}/src"
+			}
 		}
 	]
 }

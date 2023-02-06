@@ -1,14 +1,18 @@
 #r "Newtonsoft.Json"
+#r "Azure.Identity"
 
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
+using Azure.Identity;
 
 public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
 {
     log.LogInformation("C# HTTP trigger function processed a request.");
 
+    var azureCredential = new ManagedIdentityCredential();
+    
     string name = req.Query["name"];
 
     string requestBody = await new StreamReader(req.Body).ReadToEndAsync();

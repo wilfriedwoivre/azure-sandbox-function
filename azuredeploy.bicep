@@ -28,16 +28,14 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   kind: 'functionapp'
   sku: {
     name: 'Y1'
-  }
-  properties: {
-    reserved: true
+    tier: 'Dynamic'
   }
 }
 
 resource function 'Microsoft.Web/sites@2022-03-01' = {
   name: siteName
   location: location
-  kind: 'functionapp,linux'
+  kind: 'functionapp'
   identity: {
     type: 'SystemAssigned'
   }
@@ -60,11 +58,11 @@ resource function 'Microsoft.Web/sites@2022-03-01' = {
         }
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: 'dotnet-isolated'
+          value: 'dotnet'
         }
       ]
-      linuxFxVersion: 'DOTNET-ISOLATED|7.0'
-    }
+      minTlsVersion: '1.2'
+    }    
     httpsOnly: true
   }
   resource scm 'sourcecontrols@2022-03-01' = {
