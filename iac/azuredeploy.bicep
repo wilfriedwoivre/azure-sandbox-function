@@ -60,18 +60,14 @@ resource function 'Microsoft.Web/sites@2022-03-01' = {
           name: 'FUNCTIONS_WORKER_RUNTIME'
           value: 'dotnet'
         }
+        {
+          name: 'WEBSITE_RUN_FROM_PACKAGE'
+          value: '1'
+        }
       ]
       minTlsVersion: '1.2'
     }    
     httpsOnly: true
-  }
-  resource scm 'sourcecontrols@2022-03-01' = {
-    name: 'web'
-    properties: {
-      repoUrl: repoUrl
-      branch: branch
-      isManualIntegration: true
-    }
   }
 }
 
