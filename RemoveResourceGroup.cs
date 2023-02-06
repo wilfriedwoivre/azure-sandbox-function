@@ -21,7 +21,7 @@ namespace azure_sandbox_function
             SubscriptionResource subscription = await client.GetDefaultSubscriptionAsync();
             ResourceGroupCollection resourceGroups = subscription.GetResourceGroups();
 
-            await foreach(var resourceGroup in resourceGroups.GetAllAsync("$filter=AutoDelete eq 'true'")) {
+            await foreach(var resourceGroup in resourceGroups.GetAllAsync("tagName eq 'AutoDelete' and tagValue eq 'true'")) {
                 string expirationDate;
                 if (resourceGroup.Data.Tags.TryGetValue("ExpirationDate", out expirationDate)) {
                     var date = DateTime.Parse(expirationDate, CultureInfo.GetCultureInfo("en-US")); 
