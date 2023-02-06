@@ -1,0 +1,21 @@
+name: Generate ARM template
+
+on:
+  push: 
+    branches:
+      - v2
+    paths:
+      - iac/**
+
+
+jobs:
+  generate-arm-template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Bicep Build
+        uses: Azure/bicep-build-action@v1.0.0
+        with:
+          bicepFilePath: 'iac/azuredeploy.bicep'
+          outputFilePath: 'iac/azuredeploy.json'
