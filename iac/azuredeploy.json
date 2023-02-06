@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.14.6.61914",
-      "templateHash": "10313131595243949838"
+      "templateHash": "7536430556216639580"
     }
   },
   "parameters": {
@@ -27,19 +27,6 @@
     "branch": "v4"
   },
   "resources": [
-    {
-      "type": "Microsoft.Web/sites/sourcecontrols",
-      "apiVersion": "2022-03-01",
-      "name": "[format('{0}/{1}', parameters('siteName'), 'web')]",
-      "properties": {
-        "repoUrl": "[variables('repoUrl')]",
-        "branch": "[variables('branch')]",
-        "isManualIntegration": true
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
-      ]
-    },
     {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2022-09-01",
@@ -93,6 +80,10 @@
             {
               "name": "FUNCTIONS_WORKER_RUNTIME",
               "value": "dotnet"
+            },
+            {
+              "name": "WEBSITE_RUN_FROM_PACKAGE",
+              "value": "1"
             }
           ],
           "minTlsVersion": "1.2"
