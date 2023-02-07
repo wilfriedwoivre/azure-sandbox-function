@@ -7,8 +7,6 @@ param location string = resourceGroup().location
 
 var storageName = 'function${uniqueString(siteName)}'
 var servicePlan = 'server${uniqueString(siteName)}'
-var repoUrl = 'https://github.com/wilfriedwoivre/azure-sandbox-function'
-var branch = 'v4'
 
 resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: storageName
