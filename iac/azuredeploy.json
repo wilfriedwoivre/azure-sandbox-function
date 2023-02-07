@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.14.6.61914",
-      "templateHash": "7536430556216639580"
+      "templateHash": "11574048405240431935"
     }
   },
   "parameters": {
@@ -22,9 +22,7 @@
   },
   "variables": {
     "storageName": "[format('function{0}', uniqueString(parameters('siteName')))]",
-    "servicePlan": "[format('server{0}', uniqueString(parameters('siteName')))]",
-    "repoUrl": "https://github.com/wilfriedwoivre/azure-sandbox-function",
-    "branch": "v4"
+    "servicePlan": "[format('server{0}', uniqueString(parameters('siteName')))]"
   },
   "resources": [
     {
